@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Delete, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete, Param,Patch } from '@nestjs/common';
 import { StudentService } from './student.service';
 
-@Controller('student')
+@Controller('students')
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
-@Get('all')
+@Get('/all')
   obtainStudents() {
     return this.studentService.findAll();
   }
@@ -14,27 +14,23 @@ export class StudentController {
     return this.studentService.create(body);
   }
   @Delete(':id')
-  deleteStudent(@Param('id') id: string) {
+  deleteStudents(@Param('id') id: string) {
     return `Delete an user by id #${id}`;
 }
 
-  @Put('product/:idProduct')
-  updateProducto(@Param('idProduct') idProduct: string, @Body() body: any): any {
-    return {
-      idProduct: idProduct,
-      name: body.newName,
-      price: body.newPrice
-    };
-  }
+@Patch(':id')
+updateStudent(@Param('id') id: string) {
+  return `This update an user by ${id}`;
+}
 
-  @Delete('product')
-  deleteProducto(@Param('idProduct') idProduct: string): any {
-    return {
-      idProduct: idProduct,
-      delete: true,
-      count: 1
-    };
-  }
+  // @Delete('product')
+  // deleteStudent(@Param('id') idProduct: string): any {
+  //   return {
+  //     idProduct: idProduct,
+  //     delete: true,
+  //     count: 1
+  //   };
+  // }
 
 
 }
