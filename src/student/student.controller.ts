@@ -18,5 +18,23 @@ export class StudentController {
     return `Delete an user by id #${id}`;
 }
 
+  @Put('product/:idProduct')
+  updateProducto(@Param('idProduct') idProduct: string, @Body() body: any): any {
+    return {
+      idProduct: idProduct,
+      name: body.newName,
+      price: body.newPrice
+    };
+  }
+
+  @Delete('product')
+  deleteProducto(@Param('idProduct') idProduct: string): any {
+    return {
+      idProduct: idProduct,
+      delete: true,
+      count: 1
+    };
+  }
+
 
 }
